@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<healthcareDatabase xmlns="http://www.healthsystem.bw/schema/healthcare"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.healthsystem.bw/schema/healthcare ../xsd/healthcare-records.xsd"
+                    generatedDate="2026-10-19"
+                    version="1.0">
+
+    <!-- =================================================================== -->
+    <!-- BENEFIT PLANS                                                       -->
+    <!-- =================================================================== -->
+    <benefitPlans>
+        <!-- CORRECTION 1: Currency corrected to 'BWP' -->
+        <plan planCode="PLAN-ESSENTIAL">
+            <planName>Pula Essential Care</planName>
+            <annualLimit currency="BWP">120000.00</annualLimit>
+            <drugLimit currency="BWP">25000.00</drugLimit>
+            <consultationCopayPct>15.00</consultationCopayPct>
+        </plan>
+    </benefitPlans>
+
+    <!-- =================================================================== -->
+    <!-- PROVIDERS                                                           -->
+    <!-- =================================================================== -->
+    <providers>
+        <provider practiceNumber="BHPC-001290">
+            <facilityName>Gaborone Private Hospital (GPH)</facilityName>
+            <category>GP</category>
+            <contactEmail>gph.claims@gph.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+    </providers>
+
+    <!-- =================================================================== -->
+    <!-- MEMBERS                                                             -->
+    <!-- =================================================================== -->
+    <members>
+        <!-- CORRECTION 2: Status corrected to valid enumeration 'ACTIVE' -->
+        <!-- CORRECTION 3: Omang corrected to valid 9 digits '751209700' -->
+        <!-- CORRECTION 4: Added mandatory <firstName> 'Kagiso' -->
+        <!-- CORRECTION 5: Enrolled plan corrected to existing key 'PLAN-ESSENTIAL' -->
+        <member membershipNumber="MED-2024099" status="ACTIVE">
+            <omangNumber>751209700</omangNumber>
+            <firstName>Kagiso</firstName>
+            <lastName>Molefe</lastName>
+            <dateOfBirth>1990-01-01</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>corrupt.member@example.co.bw</email>
+                <phone>+267 72 000 000</phone>
+            </contact>
+            <joinDate>2024-01-01</joinDate>
+            <enrolledPlanRef>PLAN-ESSENTIAL</enrolledPlanRef>
+        </member>
+    </members>
+
+    <!-- =================================================================== -->
+    <!-- CLAIMS                                                              -->
+    <!-- =================================================================== -->
+    <claims>
+        <!-- CORRECTION 6: totalClaimed amount corrected to positive '850.00' -->
+        <claim claimRef="CLM-2025999" status="SUBMITTED">
+            <memberRef>MED-2024099</memberRef>
+            <providerRef>BHPC-001290</providerRef>
+            <serviceDate>2025-01-10</serviceDate>
+            <submissionDate>2025-01-11</submissionDate>
+            <totalClaimed currency="BWP">850.00</totalClaimed>
+            <totalApproved currency="BWP">0.00</totalApproved>
+            <memberCopay currency="BWP">0.00</memberCopay>
+            <lineItems>
+                <item tariffCode="0190">
+                    <description>Routine Checkup</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">850.00</unitPrice>
+                    <claimedAmount currency="BWP">850.00</claimedAmount>
+                    <approvedAmount currency="BWP">0.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+    </claims>
+
+</healthcareDatabase>

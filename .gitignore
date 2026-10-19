@@ -1,0 +1,19 @@
+# Maven build directory
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+
+# Log and OS files
+*.log
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<healthcareDatabase xmlns="http://www.healthsystem.bw/schema/healthcare"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.healthsystem.bw/schema/healthcare ../xsd/healthcare-records.xsd"
+                    generatedDate="2026-10-19"
+                    version="1.0">
+
+    <!-- =================================================================== -->
+    <!-- 1. ACCREDITED MEDICAL AID BENEFIT PLANS                             -->
+    <!-- =================================================================== -->
+    <benefitPlans>
+        <plan planCode="PLAN-ESSENTIAL">
+            <planName>Pula Essential Care</planName>
+            <annualLimit currency="BWP">120000.00</annualLimit>
+            <drugLimit currency="BWP">25000.00</drugLimit>
+            <consultationCopayPct>15.00</consultationCopayPct>
+        </plan>
+        <plan planCode="PLAN-COMPREHENSIVE">
+            <planName>Bomaid Comprehensive Shield</planName>
+            <annualLimit currency="BWP">380000.00</annualLimit>
+            <drugLimit currency="BWP">85000.00</drugLimit>
+            <consultationCopayPct>10.00</consultationCopayPct>
+        </plan>
+        <plan planCode="PLAN-EXECUTIVE">
+            <planName>Pula Executive Elite Health</planName>
+            <annualLimit currency="BWP">850000.00</annualLimit>
+            <drugLimit currency="BWP">250000.00</drugLimit>
+            <consultationCopayPct>0.00</consultationCopayPct>
+        </plan>
+    </benefitPlans>
+
+    <!-- =================================================================== -->
+    <!-- 2. ACCREDITED HEALTHCARE PROVIDERS                                  -->
+    <!-- =================================================================== -->
+    <providers>
+        <provider practiceNumber="BHPC-001290">
+            <facilityName>Gaborone Private Hospital (GPH)</facilityName>
+            <category>GP</category>
+            <contactEmail>gph.claims@gph.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-003411">
+            <facilityName>Bokamoso Private Hospital Specialist Clinic</facilityName>
+            <category>SPECIALIST</category>
+            <contactEmail>info@bokamosoclinic.co.bw</contactEmail>
+            <city>Gmmakau / Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-005622">
+            <facilityName>Diagnofirm Medical Laboratories Central</facilityName>
+            <category>PATHOLOGY</category>
+            <contactEmail>claims@diagnofirm.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-007833">
+            <facilityName>Sidilega Pathology Diagnostics</facilityName>
+            <category>PATHOLOGY</category>
+            <contactEmail>billing@sidilega.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-009144">
+            <facilityName>Main Mall Digital Radiology &amp; Imaging</facilityName>
+            <category>RADIOLOGY</category>
+            <contactEmail>accounts@mainmallradiology.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-011255">
+            <facilityName>Riverwalk Community Pharmacy</facilityName>
+            <category>PHARMACY</category>
+            <contactEmail>dispensary@riverwalkpharm.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-013466">
+            <facilityName>Phakalane Dental &amp; Oral Health Studio</facilityName>
+            <category>DENTAL</category>
+            <contactEmail>reception@phakalanedental.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+        <provider practiceNumber="BHPC-015577">
+            <facilityName>Riverside Private Hospital (Francistown)</facilityName>
+            <category>HOSPITAL</category>
+            <contactEmail>claims@riversidehospital.co.bw</contactEmail>
+            <city>Francistown</city>
+        </provider>
+    </providers>
+
+    <!-- =================================================================== -->
+    <!-- 3. PRINCIPAL MEMBERS & FAMILIES                                     -->
+    <!-- =================================================================== -->
+    <members>
+        <member membershipNumber="MED-2024001" status="ACTIVE">
+            <omangNumber>751209700</omangNumber>
+            <firstName>Precious</firstName>
+            <lastName>Molefe</lastName>
+            <dateOfBirth>1982-03-24</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>precious.molefe@example.co.bw</email>
+                <phone>+267 72 792 9935</phone>
+            </contact>
+            <joinDate>2024-02-19</joinDate>
+            <enrolledPlanRef>PLAN-COMPREHENSIVE</enrolledPlanRef>
+            <dependants>
+                <dependant code="01" active="true">
+                    <firstName>Kagiso</firstName>
+                    <lastName>Molefe</lastName>
+                    <relationship>SPOUSE</relationship>
+                    <dateOfBirth>1985-06-12</dateOfBirth>
+                </dependant>
+                <dependant code="02" active="true">
+                    <firstName>Neo</firstName>
+                    <lastName>Molefe</lastName>
+                    <relationship>CHILD</relationship>
+                    <dateOfBirth>2014-09-08</dateOfBirth>
+                </dependant>
+            </dependants>
+        </member>
+
+        <member membershipNumber="MED-2024002" status="ACTIVE">
+            <omangNumber>770408913</omangNumber>
+            <firstName>Lerato</firstName>
+            <lastName>Molefe</lastName>
+            <dateOfBirth>1994-01-18</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>lerato.molefe@example.co.bw</email>
+                <phone>+267 71 833 9928</phone>
+            </contact>
+            <joinDate>2024-07-08</joinDate>
+            <enrolledPlanRef>PLAN-COMPREHENSIVE</enrolledPlanRef>
+        </member>
+
+        <member membershipNumber="MED-2024003" status="ACTIVE">
+            <omangNumber>750323846</omangNumber>
+            <firstName>Johan</firstName>
+            <lastName>Gaolathe</lastName>
+            <dateOfBirth>1985-05-05</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>johan.gaolathe@example.co.bw</email>
+                <phone>+267 74 881 6514</phone>
+            </contact>
+            <joinDate>2024-02-03</joinDate>
+            <enrolledPlanRef>PLAN-EXECUTIVE</enrolledPlanRef>
+            <dependants>
+                <dependant code="01" active="true">
+                    <firstName>Lorato</firstName>
+                    <lastName>Gaolathe</lastName>
+                    <relationship>SPOUSE</relationship>
+                    <dateOfBirth>1988-11-20</dateOfBirth>
+                </dependant>
+            </dependants>
+        </member>
+
+        <member membershipNumber="MED-2024004" status="ACTIVE">
+            <omangNumber>861009535</omangNumber>
+            <firstName>Naledi</firstName>
+            <lastName>Mabaso</lastName>
+            <dateOfBirth>1998-08-18</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>naledi.mabaso@example.co.bw</email>
+                <phone>+267 75 487 2291</phone>
+            </contact>
+            <joinDate>2024-09-10</joinDate>
+            <enrolledPlanRef>PLAN-EXECUTIVE</enrolledPlanRef>
+        </member>
+
+        <member membershipNumber="MED-2024005" status="SUSPENDED">
+            <omangNumber>930423556</omangNumber>
+            <firstName>Annelize</firstName>
+            <lastName>Mabaso</lastName>
+            <dateOfBirth>1976-11-08</dateOfBirth>
+            <gender>FEMALE</gender>
+            <contact>
+                <email>annelize.mabaso@example.co.bw</email>
+                <phone>+267 76 181 4814</phone>
+            </contact>
+            <joinDate>2024-02-13</joinDate>
+            <enrolledPlanRef>PLAN-COMPREHENSIVE</enrolledPlanRef>
+        </member>
+
+        <member membershipNumber="MED-2024006" status="ACTIVE">
+            <omangNumber>860312791</omangNumber>
+            <firstName>Katlego</firstName>
+            <lastName>Sebego</lastName>
+            <dateOfBirth>1981-11-09</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>katlego.sebego@example.co.bw</email>
+                <phone>+267 72 723 3803</phone>
+            </contact>
+            <joinDate>2024-09-24</joinDate>
+            <enrolledPlanRef>PLAN-ESSENTIAL</enrolledPlanRef>
+        </member>
+
+        <member membershipNumber="MED-2024007" status="ACTIVE">
+            <omangNumber>870521956</omangNumber>
+            <firstName>Zanele</firstName>
+            <lastName>Ntuane</lastName>
+            <dateOfBirth>1982-11-11</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>zanele.ntuane@example.co.bw</email>
+                <phone>+267 71 334 1525</phone>
+            </contact>
+            <joinDate>2024-06-13</joinDate>
+            <enrolledPlanRef>PLAN-COMPREHENSIVE</enrolledPlanRef>
+            <dependants>
+                <dependant code="01" active="true">
+                    <firstName>Boitumelo</firstName>
+                    <lastName>Ntuane</lastName>
+                    <relationship>SPOUSE</relationship>
+                    <dateOfBirth>1984-04-14</dateOfBirth>
+                </dependant>
+                <dependant code="02" active="true">
+                    <firstName>Tshepo</firstName>
+                    <lastName>Ntuane</lastName>
+                    <relationship>CHILD</relationship>
+                    <dateOfBirth>2012-07-22</dateOfBirth>
+                </dependant>
+                <dependant code="03" active="true">
+                    <firstName>Mpho</firstName>
+                    <lastName>Ntuane</lastName>
+                    <relationship>CHILD</relationship>
+                    <dateOfBirth>2016-10-05</dateOfBirth>
+                </dependant>
+            </dependants>
+        </member>
+    </members>
+
+    <!-- =================================================================== -->
+    <!-- 4. MEDICAL CLAIMS & LINE ITEMS                                      -->
+    <!-- =================================================================== -->
+    <claims>
+        <claim claimRef="CLM-2025001" status="APPROVED">
+            <memberRef>MED-2024001</memberRef>
+            <providerRef>BHPC-001290</providerRef>
+            <serviceDate>2025-01-14</serviceDate>
+            <submissionDate>2025-01-15</submissionDate>
+            <totalClaimed currency="BWP">650.00</totalClaimed>
+            <totalApproved currency="BWP">585.00</totalApproved>
+            <memberCopay currency="BWP">65.00</memberCopay>
+            <lineItems>
+                <item tariffCode="0190">
+                    <description>GP General Consultation &amp; Assessment</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">650.00</unitPrice>
+                    <claimedAmount currency="BWP">650.00</claimedAmount>
+                    <approvedAmount currency="BWP">585.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+
+        <claim claimRef="CLM-2025002" status="APPROVED">
+            <memberRef>MED-2024001</memberRef>
+            <dependantCode>01</dependantCode>
+            <providerRef>BHPC-005622</providerRef>
+            <serviceDate>2025-01-18</serviceDate>
+            <submissionDate>2025-01-19</submissionDate>
+            <totalClaimed currency="BWP">1450.00</totalClaimed>
+            <totalApproved currency="BWP">1305.00</totalApproved>
+            <memberCopay currency="BWP">145.00</memberCopay>
+            <lineItems>
+                <item tariffCode="4010">
+                    <description>Full Blood Count (FBC) &amp; Lipid Profile</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">1450.00</unitPrice>
+                    <claimedAmount currency="BWP">1450.00</claimedAmount>
+                    <approvedAmount currency="BWP">1305.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+
+        <claim claimRef="CLM-2025003" status="APPROVED">
+            <memberRef>MED-2024003</memberRef>
+            <providerRef>BHPC-003411</providerRef>
+            <serviceDate>2025-02-05</serviceDate>
+            <submissionDate>2025-02-06</submissionDate>
+            <totalClaimed currency="BWP">3200.00</totalClaimed>
+            <totalApproved currency="BWP">3200.00</totalApproved>
+            <memberCopay currency="BWP">0.00</memberCopay>
+            <lineItems>
+                <item tariffCode="0199">
+                    <description>Specialist Physician Consultation &amp; ECG</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">3200.00</unitPrice>
+                    <claimedAmount currency="BWP">3200.00</claimedAmount>
+                    <approvedAmount currency="BWP">3200.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+
+        <claim claimRef="CLM-2025004" status="PARTIALLY_APPROVED">
+            <memberRef>MED-2024006</memberRef>
+            <providerRef>BHPC-011255</providerRef>
+            <serviceDate>2025-02-12</serviceDate>
+            <submissionDate>2025-02-13</submissionDate>
+            <totalClaimed currency="BWP">2800.00</totalClaimed>
+            <totalApproved currency="BWP">2380.00</totalApproved>
+            <memberCopay currency="BWP">420.00</memberCopay>
+            <lineItems>
+                <item tariffCode="8100">
+                    <description>Chronic Prescription Medication (Tier 2)</description>
+                    <quantity>2</quantity>
+                    <unitPrice currency="BWP">1400.00</unitPrice>
+                    <claimedAmount currency="BWP">2800.00</claimedAmount>
+                    <approvedAmount currency="BWP">2380.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+
+        <claim claimRef="CLM-2025005" status="REJECTED">
+            <memberRef>MED-2024005</memberRef>
+            <providerRef>BHPC-001290</providerRef>
+            <serviceDate>2025-02-20</serviceDate>
+            <submissionDate>2025-02-21</submissionDate>
+            <totalClaimed currency="BWP">750.00</totalClaimed>
+            <totalApproved currency="BWP">0.00</totalApproved>
+            <memberCopay currency="BWP">750.00</memberCopay>
+            <rejectionReason>Member policy is SUSPENDED due to premium arrears</rejectionReason>
+            <lineItems>
+                <item tariffCode="0190">
+                    <description>GP Routine Medical Check</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">750.00</unitPrice>
+                    <claimedAmount currency="BWP">750.00</claimedAmount>
+                    <approvedAmount currency="BWP">0.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+
+        <claim claimRef="CLM-2025006" status="APPROVED">
+            <memberRef>MED-2024007</memberRef>
+            <dependantCode>03</dependantCode>
+            <providerRef>BHPC-013466</providerRef>
+            <serviceDate>2025-03-02</serviceDate>
+            <submissionDate>2025-03-03</submissionDate>
+            <totalClaimed currency="BWP">1850.00</totalClaimed>
+            <totalApproved currency="BWP">1665.00</totalApproved>
+            <memberCopay currency="BWP">185.00</memberCopay>
+            <lineItems>
+                <item tariffCode="9010">
+                    <description>Pediatric Dental Examination &amp; Fluoride Treatment</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">1850.00</unitPrice>
+                    <claimedAmount currency="BWP">1850.00</claimedAmount>
+                    <approvedAmount currency="BWP">1665.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+    </claims>
+
+</healthcareDatabase>

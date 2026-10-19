@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthsystem.bw/schema/healthcare"
+           xmlns="http://www.healthsystem.bw/schema/healthcare"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+
+    <!-- =================================================================== -->
+    <!-- SIMPLE TYPES & VALIDATION RESTRICTIONS                              -->
+    <!-- =================================================================== -->
+
+    <!-- Botswana Pula Currency Restriction -->
+    <xs:simpleType name="CurrencyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BWP"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Botswana 9-Digit National Identity Number (Omang) -->
+    <xs:simpleType name="OmangType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Botswana Phone Number (+267 followed by digits and optional spacing) -->
+    <xs:simpleType name="PhoneType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+267[\s0-9\-]{7,14}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RFC Email Pattern -->
+    <xs:simpleType name="EmailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Botswana Health Professions Council (BHPC) Practice Number -->
+    <xs:simpleType name="PracticeNumberType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="BHPC-[0-9]{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Membership Policy Number (e.g. MED-2024001) -->
+    <xs:simpleType name="MembershipNumberType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="MED-[0-9]{7}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Claim Reference Number (e.g. CLM-2025001) -->
+    <xs:simpleType name="ClaimReferenceType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="CLM-[0-9]{7}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Plan Code (e.g. PLAN-ESSENTIAL) -->
+    <xs:simpleType name="PlanCodeType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="PLAN-[A-Z0-9\-]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Tariff Code (e.g. 0190, 4010) -->
+    <xs:simpleType name="TariffCodeType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4,6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Monetary Amount (Non-negative decimal with 2 decimal places) -->
+    <xs:simpleType name="MoneyAmountType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Percentage (0.00% to 100.00%) -->
+    <xs:simpleType name="PercentageType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:maxInclusive value="100.00"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Healthcare Provider Category -->
+    <xs:simpleType name="ProviderCategoryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GP"/>
+            <xs:enumeration value="SPECIALIST"/>
+            <xs:enumeration value="PATHOLOGY"/>
+            <xs:enumeration value="RADIOLOGY"/>
+            <xs:enumeration value="PHARMACY"/>
+            <xs:enumeration value="DENTAL"/>
+            <xs:enumeration value="HOSPITAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Member Policy Status -->
+    <xs:simpleType name="MemberStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACTIVE"/>
+            <xs:enumeration value="SUSPENDED"/>
+            <xs:enumeration value="TERMINATED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Claim Adjudication Status -->
+    <xs:simpleType name="ClaimStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUBMITTED"/>
+            <xs:enumeration value="APPROVED"/>
+            <xs:enumeration value="PARTIALLY_APPROVED"/>
+            <xs:enumeration value="REJECTED"/>
+            <xs:enumeration value="PAID"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Gender -->
+    <xs:simpleType name="GenderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MALE"/>
+            <xs:enumeration value="FEMALE"/>
+            <xs:enumeration value="OTHER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Dependant Relationship -->
+    <xs:simpleType name="RelationshipType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SPOUSE"/>
+            <xs:enumeration value="CHILD"/>
+            <xs:enumeration value="PARENT"/>
+            <xs:enumeration value="OTHER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- =================================================================== -->
+    <!-- COMPLEX TYPES & STRUCTURED ELEMENTS                                 -->
+    <!-- =================================================================== -->
+
+    <!-- Monetary Amount with Currency Attribute -->
+    <xs:complexType name="MonetaryValueType">
+        <xs:simpleContent>
+            <xs:extension base="MoneyAmountType">
+                <xs:attribute name="currency" type="CurrencyType" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Benefit Plan Element Type -->
+    <xs:complexType name="BenefitPlanType">
+        <xs:sequence>
+            <xs:element name="planName" type="xs:string"/>
+            <xs:element name="annualLimit" type="MonetaryValueType"/>
+            <xs:element name="drugLimit" type="MonetaryValueType"/>
+            <xs:element name="consultationCopayPct" type="PercentageType"/>
+        </xs:sequence>
+        <xs:attribute name="planCode" type="PlanCodeType" use="required"/>
+    </xs:complexType>
+
+    <!-- Healthcare Provider Element Type -->
+    <xs:complexType name="HealthcareProviderType">
+        <xs:sequence>
+            <xs:element name="facilityName" type="xs:string"/>
+            <xs:element name="category" type="ProviderCategoryType"/>
+            <xs:element name="contactEmail" type="EmailType"/>
+            <xs:element name="city" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="practiceNumber" type="PracticeNumberType" use="required"/>
+    </xs:complexType>
+
+    <!-- Dependant Element Type -->
+    <xs:complexType name="DependantType">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="relationship" type="RelationshipType"/>
+            <xs:element name="dateOfBirth" type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string" use="required"/>
+        <xs:attribute name="active" type="xs:boolean" use="required"/>
+    </xs:complexType>
+
+    <!-- Member Element Type -->
+    <xs:complexType name="MemberType">
+        <xs:sequence>
+            <xs:element name="omangNumber" type="OmangType"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="dateOfBirth" type="xs:date"/>
+            <xs:element name="gender" type="GenderType"/>
+            <xs:element name="contact">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="email" type="EmailType" minOccurs="0"/>
+                        <xs:element name="phone" type="PhoneType" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="joinDate" type="xs:date"/>
+            <xs:element name="enrolledPlanRef" type="PlanCodeType"/>
+            <xs:element name="dependants" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dependant" type="DependantType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="membershipNumber" type="MembershipNumberType" use="required"/>
+        <xs:attribute name="status" type="MemberStatusType" use="required"/>
+    </xs:complexType>
+
+    <!-- Claim Tariff Line Item Type -->
+    <xs:complexType name="ClaimItemType">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="quantity" type="xs:positiveInteger"/>
+            <xs:element name="unitPrice" type="MonetaryValueType"/>
+            <xs:element name="claimedAmount" type="MonetaryValueType"/>
+            <xs:element name="approvedAmount" type="MonetaryValueType"/>
+        </xs:sequence>
+        <xs:attribute name="tariffCode" type="TariffCodeType" use="required"/>
+    </xs:complexType>
+
+    <!-- Medical Claim Element Type -->
+    <xs:complexType name="ClaimType">
+        <xs:sequence>
+            <xs:element name="memberRef" type="MembershipNumberType"/>
+            <xs:element name="dependantCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="providerRef" type="PracticeNumberType"/>
+            <xs:element name="serviceDate" type="xs:date"/>
+            <xs:element name="submissionDate" type="xs:date"/>
+            <xs:element name="totalClaimed" type="MonetaryValueType"/>
+            <xs:element name="totalApproved" type="MonetaryValueType"/>
+            <xs:element name="memberCopay" type="MonetaryValueType"/>
+            <xs:element name="rejectionReason" type="xs:string" minOccurs="0"/>
+            <xs:element name="lineItems">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="item" type="ClaimItemType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="claimRef" type="ClaimReferenceType" use="required"/>
+        <xs:attribute name="status" type="ClaimStatusType" use="required"/>
+    </xs:complexType>
+
+    <!-- =================================================================== -->
+    <!-- ROOT DOCUMENT ELEMENT & REFERENTIAL INTEGRITY KEYS                  -->
+    <!-- =================================================================== -->
+
+    <xs:element name="healthcareDatabase">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- 1. Accredited Benefit Plans -->
+                <xs:element name="benefitPlans">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="plan" type="BenefitPlanType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- 2. Healthcare Providers -->
+                <xs:element name="providers">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="provider" type="HealthcareProviderType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- 3. Principal Members & Families -->
+                <xs:element name="members">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="member" type="MemberType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- 4. Medical Claims -->
+                <xs:element name="claims">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="claim" type="ClaimType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="generatedDate" type="xs:date" use="required"/>
+            <xs:attribute name="version" type="xs:string" use="required"/>
+        </xs:complexType>
+
+        <!-- Referential Integrity: Plan Primary Key & Foreign Key in Member -->
+        <xs:key name="PlanKey">
+            <xs:selector xpath="benefitPlans/plan"/>
+            <xs:field xpath="@planCode"/>
+        </xs:key>
+        <xs:keyref name="MemberPlanRef" refer="PlanKey">
+            <xs:selector xpath="members/member"/>
+            <xs:field xpath="enrolledPlanRef"/>
+        </xs:keyref>
+
+        <!-- Referential Integrity: Provider Primary Key & Foreign Key in Claim -->
+        <xs:key name="ProviderKey">
+            <xs:selector xpath="providers/provider"/>
+            <xs:field xpath="@practiceNumber"/>
+        </xs:key>
+        <xs:keyref name="ClaimProviderRef" refer="ProviderKey">
+            <xs:selector xpath="claims/claim"/>
+            <xs:field xpath="providerRef"/>
+        </xs:keyref>
+
+        <!-- Referential Integrity: Member Primary Key & Foreign Key in Claim -->
+        <xs:key name="MemberKey">
+            <xs:selector xpath="members/member"/>
+            <xs:field xpath="@membershipNumber"/>
+        </xs:key>
+        <xs:keyref name="ClaimMemberRef" refer="MemberKey">
+            <xs:selector xpath="claims/claim"/>
+            <xs:field xpath="memberRef"/>
+        </xs:keyref>
+    </xs:element>
+
+</xs:schema>

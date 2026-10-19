@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<healthcareDatabase xmlns="http://www.healthsystem.bw/schema/healthcare"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.healthsystem.bw/schema/healthcare ../xsd/healthcare-records.xsd"
+                    generatedDate="2026-10-19"
+                    version="1.0">
+
+    <!-- =================================================================== -->
+    <!-- BENEFIT PLANS                                                       -->
+    <!-- =================================================================== -->
+    <benefitPlans>
+        <!-- VIOLATION 1: Invalid currency 'USD' instead of 'BWP' -->
+        <plan planCode="PLAN-ESSENTIAL">
+            <planName>Pula Essential Care</planName>
+            <annualLimit currency="USD">120000.00</annualLimit>
+            <drugLimit currency="BWP">25000.00</drugLimit>
+            <consultationCopayPct>15.00</consultationCopayPct>
+        </plan>
+    </benefitPlans>
+
+    <!-- =================================================================== -->
+    <!-- PROVIDERS                                                           -->
+    <!-- =================================================================== -->
+    <providers>
+        <provider practiceNumber="BHPC-001290">
+            <facilityName>Gaborone Private Hospital (GPH)</facilityName>
+            <category>GP</category>
+            <contactEmail>gph.claims@gph.co.bw</contactEmail>
+            <city>Gaborone</city>
+        </provider>
+    </providers>
+
+    <!-- =================================================================== -->
+    <!-- MEMBERS                                                             -->
+    <!-- =================================================================== -->
+    <members>
+        <!-- VIOLATION 2: Invalid status 'PENDING_APPROVAL' (Not in enumeration) -->
+        <!-- VIOLATION 3: Invalid Omang '75120' (Only 5 digits, expected 9 digits) -->
+        <!-- VIOLATION 4: Missing mandatory <firstName> element -->
+        <!-- VIOLATION 5: Referential Integrity Violation: Enrolled plan 'PLAN-GHOST' does not exist -->
+        <member membershipNumber="MED-2024099" status="PENDING_APPROVAL">
+            <omangNumber>75120</omangNumber>
+            <lastName>Molefe</lastName>
+            <dateOfBirth>1990-01-01</dateOfBirth>
+            <gender>MALE</gender>
+            <contact>
+                <email>corrupt.member@example.co.bw</email>
+                <phone>+267 72 000 000</phone>
+            </contact>
+            <joinDate>2024-01-01</joinDate>
+            <enrolledPlanRef>PLAN-GHOST</enrolledPlanRef>
+        </member>
+    </members>
+
+    <!-- =================================================================== -->
+    <!-- CLAIMS                                                              -->
+    <!-- =================================================================== -->
+    <claims>
+        <!-- VIOLATION 6: Negative totalClaimed amount '-850.00' (Violates minInclusive 0.00) -->
+        <claim claimRef="CLM-2025999" status="SUBMITTED">
+            <memberRef>MED-2024099</memberRef>
+            <providerRef>BHPC-001290</providerRef>
+            <serviceDate>2025-01-10</serviceDate>
+            <submissionDate>2025-01-11</submissionDate>
+            <totalClaimed currency="BWP">-850.00</totalClaimed>
+            <totalApproved currency="BWP">0.00</totalApproved>
+            <memberCopay currency="BWP">0.00</memberCopay>
+            <lineItems>
+                <item tariffCode="0190">
+                    <description>Routine Checkup</description>
+                    <quantity>1</quantity>
+                    <unitPrice currency="BWP">850.00</unitPrice>
+                    <claimedAmount currency="BWP">850.00</claimedAmount>
+                    <approvedAmount currency="BWP">0.00</approvedAmount>
+                </item>
+            </lineItems>
+        </claim>
+    </claims>
+
+</healthcareDatabase>
